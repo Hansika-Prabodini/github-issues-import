@@ -340,7 +340,7 @@ def import_issues(issues):
 	state.current = state.IMPORT_CONFIRMATION
 	
 	print("You are about to add to '" + config.get('target', 'repository') + "':")
-	print(" *", len(issues), "new issues") 
+	print(" *", num_new_issues, "new issues") 
 	print(" *", num_new_comments, "new comments") 
 	print(" *", len(new_milestones), "new milestones") 
 	print(" *", len(new_labels), "new labels") 
