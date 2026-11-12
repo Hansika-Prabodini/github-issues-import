@@ -231,24 +231,20 @@ def get_issue_by_id(which, issue_id):
 	return send_request(which, "issues/%d" % issue_id)
 
 def get_issues_by_id(which, issue_ids):
-	# Populate issues based on issue IDs
-	issues = []
-	for issue_id in issue_ids:
-		issues.append(get_issue_by_id(which, int(issue_id)))
-	
-	return issues
+	# Keep the same issue-number order as the original final sort.
+	for issue_id in sorted(issue_ids):
+		yield get_issue_by_id(which, int(issue_id))
 
-# Allowed values for state are 'open' and 'closed'
+# GitHub assigns issue numbers in creation order. Filtering with state=all
+# avoids keeping separate open and closed lists to merge and sort.
 def get_issues_by_state(which, state):
-	issues = []
 	page = 1
 	while True:
-		new_issues = send_request(which, "issues?state=%s&direction=asc&page=%d" % (state, page))
+		new_issues = send_request(which, "issues?state=%s&sort=created&direction=asc&per_page=100&page=%d" % (state, page))
 		if not new_issues:
 			break
-		issues.extend(new_issues)
+		yield from new_issues
 		page += 1
-	return issues
 
 def get_comments_on_issue(which, issue):
 	if issue['comments'] != 0:
