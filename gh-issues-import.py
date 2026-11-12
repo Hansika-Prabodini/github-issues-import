@@ -274,8 +274,9 @@ def import_label(source):
 	print("Successfully created label '%s'" % result_label['name'])
 	return result_label
 
-def import_comments(comments, issue_number):
-	result_comments = []
+def import_comments(comments, issue_number, collect_results=True):
+	result_comments = [] if collect_results else None
+	comment_count = 0
 	for comment in comments:
 	
 		template_data = {}
