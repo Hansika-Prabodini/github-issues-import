@@ -401,28 +401,23 @@ if __name__ == '__main__':
 	
 	state.current = state.LOADING_CONFIG
 	
-	issue_ids = init_config()	
-	issues = []
-	
+	issue_ids = init_config()
 	state.current = state.FETCHING_ISSUES
 	
-	# Argparser will prevent us from getting both issue ids and specifying issue state, so no duplicates will be added
-	if (len(issue_ids) > 0):
-		issues += get_issues_by_id('source', issue_ids)
-	
-	if config.getboolean('settings', 'import-open-issues'):
-		issues += get_issues_by_state('source', 'open')
-	
-	if config.getboolean('settings', 'import-closed-issues'):
-		issues += get_issues_by_state('source', 'closed')
-	
-	# Sort issues based on their original `id` field
-	# Confusing, but taken from http://stackoverflow.com/a/2878123/617937
-	issues.sort(key=lambda x:x['number'])
+	# Selection is restartable for the metadata scan and the import pass.
+	# `state=all` merges open and closed issues in issue-number order.
+	def selected_issues():
+		if issue_ids:
+			yield from get_issues_by_id('source', issue_ids)
+		else:
+			open_issues = config.getboolean('settings', 'import-open-issues')
+			closed_issues = config.getboolean('settings', 'import-closed-issues')
+			if open_issues or closed_issues:
+				issue_state = 'all' if open_issues and closed_issues else ('open' if open_issues else 'closed')
+				yield from get_issues_by_state('source', issue_state)
 	
 	# Further states defined within the function
-	# Finally, add these issues to the target repository
-	import_issues(issues)
+	import_issues(selected_issues)
 	
 	state.current = state.COMPLETE
 
