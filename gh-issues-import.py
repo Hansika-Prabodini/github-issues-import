@@ -231,30 +231,31 @@ def get_issue_by_id(which, issue_id):
 	return send_request(which, "issues/%d" % issue_id)
 
 def get_issues_by_id(which, issue_ids):
-	# Populate issues based on issue IDs
-	issues = []
-	for issue_id in issue_ids:
-		issues.append(get_issue_by_id(which, int(issue_id)))
-	
-	return issues
+	# Keep the same issue-number order as the original final sort.
+	for issue_id in sorted(issue_ids):
+		yield get_issue_by_id(which, int(issue_id))
 
-# Allowed values for state are 'open' and 'closed'
+# GitHub assigns issue numbers in creation order. Filtering with state=all
+# avoids keeping separate open and closed lists to merge and sort.
 def get_issues_by_state(which, state):
-	issues = []
 	page = 1
 	while True:
-		new_issues = send_request(which, "issues?state=%s&direction=asc&page=%d" % (state, page))
+		new_issues = send_request(which, "issues?state=%s&sort=created&direction=asc&per_page=100&page=%d" % (state, page))
 		if not new_issues:
 			break
-		issues.extend(new_issues)
+		yield from new_issues
 		page += 1
-	return issues
 
 def get_comments_on_issue(which, issue):
-	if issue['comments'] != 0:
-		return send_request(which, "issues/%s/comments" % issue['number'])
-	else :
-		return []
+	if not issue['comments']:
+		return
+	page = 1
+	while True:
+		comments = send_request(which, "issues/%s/comments?per_page=100&page=%d" % (issue['number'], page))
+		if not comments:
+			break
+		yield from comments
+		page += 1
 
 def import_milestone(source):
 	data = {
@@ -278,8 +279,9 @@ def import_label(source):
 	print("Successfully created label '%s'" % result_label['name'])
 	return result_label
 
-def import_comments(comments, issue_number):
-	result_comments = []
+def import_comments(comments, issue_number, collect_results=True):
+	result_comments = [] if collect_results else None
+	comment_count = 0
 	for comment in comments:
 	
 		template_data = {}
@@ -293,13 +295,17 @@ def import_comments(comments, issue_number):
 		comment['body'] = format_comment(template_data)
 
 		result_comment = send_request('target', "issues/%s/comments" % issue_number, comment)
-		result_comments.append(result_comment)
+		comment_count += 1
+		if collect_results:
+			result_comments.append(result_comment)
 		
-	return result_comments
+	return result_comments if collect_results else comment_count
 
 # Will only import milestones and issues that are in use by the imported issues, and do not exist in the target repository
-def import_issues(issues):
+def import_issues(issues, collect_results=True):
 
+	# Existing callers may still pass a list; the CLI passes a restartable factory.
+	issue_source = issues if callable(issues) else lambda: iter(issues)
 	state.current = state.GENERATING
 	
 	known_milestones = get_milestones('target')
@@ -314,65 +320,37 @@ def import_issues(issues):
 			if label['name'] == name : return label
 		return None
 	
-	new_issues = []
+	num_new_issues = 0
 	num_new_comments = 0
 	new_milestones = []
 	new_labels = []
+	import_comments_enabled = config.getboolean('settings', 'import-comments')
+	import_milestones_enabled = config.getboolean('settings', 'import-milestone')
+	import_labels_enabled = config.getboolean('settings', 'import-labels')
 	
-	for issue in issues:
-		
-		new_issue = {}
-		new_issue['title'] = issue['title']
-		
-		# Temporary fix for marking closed issues
-		if issue['closed_at']:
-			new_issue['title'] = "[CLOSED] " + new_issue['title']
-		
-		if config.getboolean('settings', 'import-comments') and 'comments' in issue and issue['comments'] != 0:
+	# Scan only metadata for the confirmation prompt. Bodies and comments are
+	# prepared after confirmation, one issue at a time.
+	for issue in issue_source():
+		num_new_issues += 1
+		if import_comments_enabled and issue.get('comments'):
 			num_new_comments += int(issue['comments'])
-			new_issue['comments'] = get_comments_on_issue('source', issue)
 		
-		if config.getboolean('settings', 'import-milestone') and 'milestone' in issue and issue['milestone'] is not None:
-			# Since the milestones' ids are going to differ, we will compare them by title instead
-			found_milestone = get_milestone_by_title(issue['milestone']['title'])
-			if found_milestone:
-				new_issue['milestone_object'] = found_milestone
-			else:
+		if import_milestones_enabled and issue.get('milestone') is not None:
+			if not get_milestone_by_title(issue['milestone']['title']):
 				new_milestone = issue['milestone']
-				new_issue['milestone_object'] = new_milestone
-				known_milestones.append(new_milestone) # Allow it to be found next time
-				new_milestones.append(new_milestone)   # Put it in a queue to add it later
+				known_milestones.append(new_milestone)
+				new_milestones.append(new_milestone)
 		
-		if config.getboolean('settings', 'import-labels') and 'labels' in issue and issue['labels'] is not None:
-			new_issue['label_objects'] = []
+		if import_labels_enabled and issue.get('labels') is not None:
 			for issue_label in issue['labels']:
-				found_label = get_label_by_name(issue_label['name'])
-				if found_label:
-					new_issue['label_objects'].append(found_label)
-				else:
-					new_issue['label_objects'].append(issue_label)
-					known_labels.append(issue_label) # Allow it to be found next time
-					new_labels.append(issue_label)   # Put it in a queue to add it later
-		
-		template_data = {}
-		template_data['user_name'] = issue['user']['login']
-		template_data['user_url'] = issue['user']['html_url']
-		template_data['user_avatar'] = issue['user']['avatar_url']
-		template_data['date'] = format_date(issue['created_at'])
-		template_data['url'] =  issue['html_url']
-		template_data['body'] = issue['body']
-		
-		if "pull_request" in issue and issue['pull_request']['html_url'] is not None:
-			new_issue['body'] = format_pull_request(template_data)
-		else:
-			new_issue['body'] = format_issue(template_data)
-		
-		new_issues.append(new_issue)
+				if not get_label_by_name(issue_label['name']):
+					known_labels.append(issue_label)
+					new_labels.append(issue_label)
 	
 	state.current = state.IMPORT_CONFIRMATION
 	
 	print("You are about to add to '" + config.get('target', 'repository') + "':")
-	print(" *", len(new_issues), "new issues") 
+	print(" *", num_new_issues, "new issues") 
 	print(" *", num_new_comments, "new comments") 
 	print(" *", len(new_milestones), "new milestones") 
 	print(" *", len(new_labels), "new labels") 
@@ -390,27 +368,41 @@ def import_issues(issues):
 		result_label = import_label(label)
 	
 	result_issues = []
-	for issue in new_issues:
+	for issue in issue_source():
+		new_issue = {'title': issue['title']}
+		if issue['closed_at']:
+			new_issue['title'] = "[CLOSED] " + new_issue['title']
 		
-		if 'milestone_object' in issue:
-			issue['milestone'] = issue['milestone_object']['number']
-			del issue['milestone_object']
+		if import_milestones_enabled and issue.get('milestone') is not None:
+			new_issue['milestone'] = get_milestone_by_title(issue['milestone']['title'])['number']
 		
-		if 'label_objects' in issue:
-			issue_labels = []
-			for label in issue['label_objects']:
-				issue_labels.append(label['name'])
-			issue['labels'] = issue_labels
-			del issue['label_objects']
+		if import_labels_enabled and issue.get('labels') is not None:
+			new_issue['labels'] = [get_label_by_name(label['name'])['name'] for label in issue['labels']]
 		
-		result_issue = send_request('target', "issues", issue)
+		template_data = {
+			'user_name': issue['user']['login'],
+			'user_url': issue['user']['html_url'],
+			'user_avatar': issue['user']['avatar_url'],
+			'date': format_date(issue['created_at']),
+			'url': issue['html_url'],
+			'body': issue['body']
+		}
+		if "pull_request" in issue and issue['pull_request']['html_url'] is not None:
+			new_issue['body'] = format_pull_request(template_data)
+		else:
+			new_issue['body'] = format_issue(template_data)
+		
+		result_issue = send_request('target', "issues", new_issue)
 		print("Successfully created issue '%s'" % result_issue['title'])
 		
-		if 'comments' in issue:
-			result_comments = import_comments(issue['comments'], result_issue['number'])		
-			print(" > Successfully added", len(result_comments), "comments.")
+		if import_comments_enabled and issue.get('comments'):
+			comments = get_comments_on_issue('source', issue)
+			result_comments = import_comments(comments, result_issue['number'], collect_results)
+			comment_count = len(result_comments) if collect_results else result_comments
+			print(" > Successfully added", comment_count, "comments.")
 		
-		result_issues.append(result_issue)
+		if collect_results:
+			result_issues.append(result_issue)
 	
 	state.current = state.IMPORT_COMPLETE
 	
@@ -421,28 +413,23 @@ if __name__ == '__main__':
 	
 	state.current = state.LOADING_CONFIG
 	
-	issue_ids = init_config()	
-	issues = []
-	
+	issue_ids = init_config()
 	state.current = state.FETCHING_ISSUES
 	
-	# Argparser will prevent us from getting both issue ids and specifying issue state, so no duplicates will be added
-	if (len(issue_ids) > 0):
-		issues += get_issues_by_id('source', issue_ids)
-	
-	if config.getboolean('settings', 'import-open-issues'):
-		issues += get_issues_by_state('source', 'open')
-	
-	if config.getboolean('settings', 'import-closed-issues'):
-		issues += get_issues_by_state('source', 'closed')
-	
-	# Sort issues based on their original `id` field
-	# Confusing, but taken from http://stackoverflow.com/a/2878123/617937
-	issues.sort(key=lambda x:x['number'])
+	# Selection is restartable for the metadata scan and the import pass.
+	# `state=all` merges open and closed issues in issue-number order.
+	def selected_issues():
+		if issue_ids:
+			yield from get_issues_by_id('source', issue_ids)
+		else:
+			open_issues = config.getboolean('settings', 'import-open-issues')
+			closed_issues = config.getboolean('settings', 'import-closed-issues')
+			if open_issues or closed_issues:
+				issue_state = 'all' if open_issues and closed_issues else ('open' if open_issues else 'closed')
+				yield from get_issues_by_state('source', issue_state)
 	
 	# Further states defined within the function
-	# Finally, add these issues to the target repository
-	import_issues(issues)
+	import_issues(selected_issues, collect_results=False)
 	
 	state.current = state.COMPLETE
 
