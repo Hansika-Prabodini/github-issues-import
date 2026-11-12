@@ -360,24 +360,36 @@ def import_issues(issues):
 		result_label = import_label(label)
 	
 	result_issues = []
-	for issue in new_issues:
+	for issue in issues:
+		new_issue = {'title': issue['title']}
+		if issue['closed_at']:
+			new_issue['title'] = "[CLOSED] " + new_issue['title']
 		
-		if 'milestone_object' in issue:
-			issue['milestone'] = issue['milestone_object']['number']
-			del issue['milestone_object']
+		if import_milestones_enabled and issue.get('milestone') is not None:
+			new_issue['milestone'] = get_milestone_by_title(issue['milestone']['title'])['number']
 		
-		if 'label_objects' in issue:
-			issue_labels = []
-			for label in issue['label_objects']:
-				issue_labels.append(label['name'])
-			issue['labels'] = issue_labels
-			del issue['label_objects']
+		if import_labels_enabled and issue.get('labels') is not None:
+			new_issue['labels'] = [get_label_by_name(label['name'])['name'] for label in issue['labels']]
 		
-		result_issue = send_request('target', "issues", issue)
+		template_data = {
+			'user_name': issue['user']['login'],
+			'user_url': issue['user']['html_url'],
+			'user_avatar': issue['user']['avatar_url'],
+			'date': format_date(issue['created_at']),
+			'url': issue['html_url'],
+			'body': issue['body']
+		}
+		if "pull_request" in issue and issue['pull_request']['html_url'] is not None:
+			new_issue['body'] = format_pull_request(template_data)
+		else:
+			new_issue['body'] = format_issue(template_data)
+		
+		result_issue = send_request('target', "issues", new_issue)
 		print("Successfully created issue '%s'" % result_issue['title'])
 		
-		if 'comments' in issue:
-			result_comments = import_comments(issue['comments'], result_issue['number'])		
+		if import_comments_enabled and issue.get('comments'):
+			comments = get_comments_on_issue('source', issue)
+			result_comments = import_comments(comments, result_issue['number'])
 			print(" > Successfully added", len(result_comments), "comments.")
 		
 		result_issues.append(result_issue)
