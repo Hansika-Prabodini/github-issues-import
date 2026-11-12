@@ -264,7 +264,7 @@ def import_milestone(source):
 		"due_on": source['due_on']
 	}
 	
-	result_milestone = send_request('target', "milestones", source)
+	result_milestone = send_request('target', "milestones", data)
 	print("Successfully created milestone '%s'" % result_milestone['title'])
 	return result_milestone
 
