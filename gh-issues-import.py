@@ -424,7 +424,7 @@ if __name__ == '__main__':
 				yield from get_issues_by_state('source', issue_state)
 	
 	# Further states defined within the function
-	import_issues(selected_issues)
+	import_issues(selected_issues, collect_results=False)
 	
 	state.current = state.COMPLETE
 
