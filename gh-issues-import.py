@@ -320,7 +320,8 @@ def import_issues(issues):
 	
 	# Scan only metadata for the confirmation prompt. Bodies and comments are
 	# prepared after confirmation, one issue at a time.
-	for issue in issues:
+	for issue in issues():
+		num_new_issues += 1
 		if import_comments_enabled and issue.get('comments'):
 			num_new_comments += int(issue['comments'])
 		
