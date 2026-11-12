@@ -290,9 +290,11 @@ def import_comments(comments, issue_number, collect_results=True):
 		comment['body'] = format_comment(template_data)
 
 		result_comment = send_request('target', "issues/%s/comments" % issue_number, comment)
-		result_comments.append(result_comment)
+		comment_count += 1
+		if collect_results:
+			result_comments.append(result_comment)
 		
-	return result_comments
+	return result_comments if collect_results else comment_count
 
 # Will only import milestones and issues that are in use by the imported issues, and do not exist in the target repository
 def import_issues(issues, collect_results=True):
