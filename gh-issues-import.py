@@ -392,10 +392,12 @@ def import_issues(issues, collect_results=True):
 		
 		if import_comments_enabled and issue.get('comments'):
 			comments = get_comments_on_issue('source', issue)
-			result_comments = import_comments(comments, result_issue['number'])
-			print(" > Successfully added", len(result_comments), "comments.")
+			result_comments = import_comments(comments, result_issue['number'], collect_results)
+			comment_count = len(result_comments) if collect_results else result_comments
+			print(" > Successfully added", comment_count, "comments.")
 		
-		result_issues.append(result_issue)
+		if collect_results:
+			result_issues.append(result_issue)
 	
 	state.current = state.IMPORT_COMPLETE
 	
