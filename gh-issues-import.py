@@ -202,6 +202,7 @@ def send_request(which, url, post_data=None):
 	req.add_header("Content-Type", "application/json")
 	req.add_header("Accept", "application/json")
 	req.add_header("User-Agent", "IQAndreas/github-issues-import")
+	req.add_header("X-GitHub-Api-Version", "2022-11-28")
 	
 	try:
 		response = urllib.request.urlopen(req)
