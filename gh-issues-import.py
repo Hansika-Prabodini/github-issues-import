@@ -310,6 +310,7 @@ def import_issues(issues):
 			if label['name'] == name : return label
 		return None
 	
+	num_new_issues = 0
 	num_new_comments = 0
 	new_milestones = []
 	new_labels = []
