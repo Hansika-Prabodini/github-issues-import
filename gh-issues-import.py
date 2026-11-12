@@ -294,8 +294,10 @@ def import_comments(comments, issue_number):
 	return result_comments
 
 # Will only import milestones and issues that are in use by the imported issues, and do not exist in the target repository
-def import_issues(issues):
+def import_issues(issues, collect_results=False):
 
+	# Existing callers may still pass a list; the CLI passes a restartable factory.
+	issue_source = issues if callable(issues) else lambda: iter(issues)
 	state.current = state.GENERATING
 	
 	known_milestones = get_milestones('target')
