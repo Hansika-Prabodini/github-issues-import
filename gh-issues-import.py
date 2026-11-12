@@ -314,65 +314,35 @@ def import_issues(issues):
 			if label['name'] == name : return label
 		return None
 	
-	new_issues = []
 	num_new_comments = 0
 	new_milestones = []
 	new_labels = []
+	import_comments_enabled = config.getboolean('settings', 'import-comments')
+	import_milestones_enabled = config.getboolean('settings', 'import-milestone')
+	import_labels_enabled = config.getboolean('settings', 'import-labels')
 	
+	# Scan only metadata for the confirmation prompt. Bodies and comments are
+	# prepared after confirmation, one issue at a time.
 	for issue in issues:
-		
-		new_issue = {}
-		new_issue['title'] = issue['title']
-		
-		# Temporary fix for marking closed issues
-		if issue['closed_at']:
-			new_issue['title'] = "[CLOSED] " + new_issue['title']
-		
-		if config.getboolean('settings', 'import-comments') and 'comments' in issue and issue['comments'] != 0:
+		if import_comments_enabled and issue.get('comments'):
 			num_new_comments += int(issue['comments'])
-			new_issue['comments'] = get_comments_on_issue('source', issue)
 		
-		if config.getboolean('settings', 'import-milestone') and 'milestone' in issue and issue['milestone'] is not None:
-			# Since the milestones' ids are going to differ, we will compare them by title instead
-			found_milestone = get_milestone_by_title(issue['milestone']['title'])
-			if found_milestone:
-				new_issue['milestone_object'] = found_milestone
-			else:
+		if import_milestones_enabled and issue.get('milestone') is not None:
+			if not get_milestone_by_title(issue['milestone']['title']):
 				new_milestone = issue['milestone']
-				new_issue['milestone_object'] = new_milestone
-				known_milestones.append(new_milestone) # Allow it to be found next time
-				new_milestones.append(new_milestone)   # Put it in a queue to add it later
+				known_milestones.append(new_milestone)
+				new_milestones.append(new_milestone)
 		
-		if config.getboolean('settings', 'import-labels') and 'labels' in issue and issue['labels'] is not None:
-			new_issue['label_objects'] = []
+		if import_labels_enabled and issue.get('labels') is not None:
 			for issue_label in issue['labels']:
-				found_label = get_label_by_name(issue_label['name'])
-				if found_label:
-					new_issue['label_objects'].append(found_label)
-				else:
-					new_issue['label_objects'].append(issue_label)
-					known_labels.append(issue_label) # Allow it to be found next time
-					new_labels.append(issue_label)   # Put it in a queue to add it later
-		
-		template_data = {}
-		template_data['user_name'] = issue['user']['login']
-		template_data['user_url'] = issue['user']['html_url']
-		template_data['user_avatar'] = issue['user']['avatar_url']
-		template_data['date'] = format_date(issue['created_at'])
-		template_data['url'] =  issue['html_url']
-		template_data['body'] = issue['body']
-		
-		if "pull_request" in issue and issue['pull_request']['html_url'] is not None:
-			new_issue['body'] = format_pull_request(template_data)
-		else:
-			new_issue['body'] = format_issue(template_data)
-		
-		new_issues.append(new_issue)
+				if not get_label_by_name(issue_label['name']):
+					known_labels.append(issue_label)
+					new_labels.append(issue_label)
 	
 	state.current = state.IMPORT_CONFIRMATION
 	
 	print("You are about to add to '" + config.get('target', 'repository') + "':")
-	print(" *", len(new_issues), "new issues") 
+	print(" *", len(issues), "new issues") 
 	print(" *", num_new_comments, "new comments") 
 	print(" *", len(new_milestones), "new milestones") 
 	print(" *", len(new_labels), "new labels") 
@@ -390,24 +360,36 @@ def import_issues(issues):
 		result_label = import_label(label)
 	
 	result_issues = []
-	for issue in new_issues:
+	for issue in issues:
+		new_issue = {'title': issue['title']}
+		if issue['closed_at']:
+			new_issue['title'] = "[CLOSED] " + new_issue['title']
 		
-		if 'milestone_object' in issue:
-			issue['milestone'] = issue['milestone_object']['number']
-			del issue['milestone_object']
+		if import_milestones_enabled and issue.get('milestone') is not None:
+			new_issue['milestone'] = get_milestone_by_title(issue['milestone']['title'])['number']
 		
-		if 'label_objects' in issue:
-			issue_labels = []
-			for label in issue['label_objects']:
-				issue_labels.append(label['name'])
-			issue['labels'] = issue_labels
-			del issue['label_objects']
+		if import_labels_enabled and issue.get('labels') is not None:
+			new_issue['labels'] = [get_label_by_name(label['name'])['name'] for label in issue['labels']]
 		
-		result_issue = send_request('target', "issues", issue)
+		template_data = {
+			'user_name': issue['user']['login'],
+			'user_url': issue['user']['html_url'],
+			'user_avatar': issue['user']['avatar_url'],
+			'date': format_date(issue['created_at']),
+			'url': issue['html_url'],
+			'body': issue['body']
+		}
+		if "pull_request" in issue and issue['pull_request']['html_url'] is not None:
+			new_issue['body'] = format_pull_request(template_data)
+		else:
+			new_issue['body'] = format_issue(template_data)
+		
+		result_issue = send_request('target', "issues", new_issue)
 		print("Successfully created issue '%s'" % result_issue['title'])
 		
-		if 'comments' in issue:
-			result_comments = import_comments(issue['comments'], result_issue['number'])		
+		if import_comments_enabled and issue.get('comments'):
+			comments = get_comments_on_issue('source', issue)
+			result_comments = import_comments(comments, result_issue['number'])
 			print(" > Successfully added", len(result_comments), "comments.")
 		
 		result_issues.append(result_issue)
