@@ -1,0 +1,23 @@
+{
+  "url": "https://api.github.com/repos/IQAndreas/github-issues-import/issues/47",
+  "html_url": "https://github.com/IQAndreas/github-issues-import/issues/47",
+  "number": 47,
+  "title": "Page body date milestone token date template",
+  "user": {
+    "login": "IQAndreas",
+    "id": 9603388,
+    "avatar_url": "https://avatars.githubusercontent.com/u/603388?v=4",
+    "html_url": "https://github.com/IQAndreas",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [],
+  "state": "open",
+  "assignee": null,
+  "milestone": null,
+  "comments": 3,
+  "created_at": "2014-12-02T23:29:00Z",
+  "updated_at": "2014-12-07T23:29:05Z",
+  "closed_at": null,
+  "body": "Template label template state page target target date milestone unicode enterprise label state format.\n\nLabel request label github label body token target token api page enterprise state token retry date unicode."
+}

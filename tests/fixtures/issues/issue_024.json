@@ -1,0 +1,40 @@
+{
+  "url": "https://api.github.com/repos/IQAndreas/github-issues-import/issues/24",
+  "html_url": "https://github.com/IQAndreas/github-issues-import/issues/24",
+  "number": 24,
+  "title": "Unicode milestone page",
+  "user": {
+    "login": "defunkt",
+    "id": 3882321,
+    "avatar_url": "https://avatars.githubusercontent.com/u/882321?v=4",
+    "html_url": "https://github.com/defunkt",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [
+    {
+      "name": "help wanted",
+      "color": "159818",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/help%20wanted"
+    },
+    {
+      "name": "bug",
+      "color": "fc2929",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/bug"
+    }
+  ],
+  "state": "open",
+  "assignee": null,
+  "milestone": {
+    "number": 1,
+    "title": "v0.1",
+    "state": "open",
+    "description": "Api error retry issue error issue.",
+    "due_on": null
+  },
+  "comments": 3,
+  "created_at": "2014-01-17T00:48:00Z",
+  "updated_at": "2014-01-22T00:48:05Z",
+  "closed_at": null,
+  "body": "Token retry closed request comment error state title api closed page enterprise target template target label.\n\nLabel error retry github response closed retry api milestone token.\n\nState error state issue issue issue milestone date response github body state title milestone target state milestone."
+}

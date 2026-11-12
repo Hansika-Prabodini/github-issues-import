@@ -1,0 +1,40 @@
+{
+  "url": "https://api.github.com/repos/IQAndreas/github-issues-import/issues/15",
+  "html_url": "https://github.com/IQAndreas/github-issues-import/issues/15",
+  "number": 15,
+  "title": "Import milestone import retry github github config open",
+  "user": {
+    "login": "defunkt",
+    "id": 3882321,
+    "avatar_url": "https://avatars.githubusercontent.com/u/882321?v=4",
+    "html_url": "https://github.com/defunkt",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [
+    {
+      "name": "question",
+      "color": "cc317c",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/question"
+    },
+    {
+      "name": "enhancement",
+      "color": "84b6eb",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/enhancement"
+    }
+  ],
+  "state": "closed",
+  "assignee": null,
+  "milestone": {
+    "number": 4,
+    "title": "v0.4",
+    "state": "open",
+    "description": "Import repository page issue milestone format.",
+    "due_on": null
+  },
+  "comments": 1,
+  "created_at": "2014-04-18T15:45:00Z",
+  "updated_at": "2014-04-23T15:45:05Z",
+  "closed_at": "2014-04-27T15:45:57Z",
+  "body": "Label format comment body title api retry state open label title state config target issue format.\n\nState request title source import issue body error unicode template label body date title comment comment response target."
+}

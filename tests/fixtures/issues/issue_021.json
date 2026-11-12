@@ -1,0 +1,40 @@
+{
+  "url": "https://api.github.com/repos/IQAndreas/github-issues-import/issues/21",
+  "html_url": "https://github.com/IQAndreas/github-issues-import/issues/21",
+  "number": 21,
+  "title": "Error request page format template target milestone response",
+  "user": {
+    "login": "jeevatkm",
+    "id": 2993502,
+    "avatar_url": "https://avatars.githubusercontent.com/u/993502?v=4",
+    "html_url": "https://github.com/jeevatkm",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [
+    {
+      "name": "enhancement",
+      "color": "84b6eb",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/enhancement"
+    },
+    {
+      "name": "help wanted",
+      "color": "159818",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/help%20wanted"
+    }
+  ],
+  "state": "open",
+  "assignee": null,
+  "milestone": {
+    "number": 2,
+    "title": "v0.2",
+    "state": "open",
+    "description": "Open template milestone retry request source.",
+    "due_on": null
+  },
+  "comments": 35,
+  "created_at": "2014-10-08T21:27:00Z",
+  "updated_at": "2014-10-13T21:27:05Z",
+  "closed_at": null,
+  "body": "Error milestone target date comment request closed error source github response enterprise milestone template date enterprise format template.\n\nComment source template unicode state retry import retry request repository token response api body token config.\n\nMilestone comment request github label state api closed enterprise format."
+}

@@ -1,0 +1,29 @@
+{
+  "url": "https://api.github.com/repos/IQAndreas/github-issues-import/issues/45",
+  "html_url": "https://github.com/IQAndreas/github-issues-import/issues/45",
+  "number": 45,
+  "title": "Token state label template error state",
+  "user": {
+    "login": "mojombo",
+    "id": 5160128,
+    "avatar_url": "https://avatars.githubusercontent.com/u/160128?v=4",
+    "html_url": "https://github.com/mojombo",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [],
+  "state": "closed",
+  "assignee": null,
+  "milestone": {
+    "number": 2,
+    "title": "v0.2",
+    "state": "open",
+    "description": "Unicode issue milestone milestone token response.",
+    "due_on": null
+  },
+  "comments": 4,
+  "created_at": "2014-10-24T21:15:00Z",
+  "updated_at": "2014-10-01T21:15:05Z",
+  "closed_at": "2014-10-05T21:15:57Z",
+  "body": "Title milestone response date repository api comment body response source repository response source issue import title page.\n\nApi api repository open api repository body github api api comment."
+}

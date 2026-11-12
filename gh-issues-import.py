@@ -232,7 +232,7 @@ def get_issue_by_id(which, issue_id):
 
 def get_issues_by_id(which, issue_ids):
 	# Keep the same issue-number order as the original final sort.
-	for issue_id in sorted(issue_ids):
+	for issue_id in sorted(int(i) for i in issue_ids):
 		yield get_issue_by_id(which, int(issue_id))
 
 # GitHub assigns issue numbers in creation order. Filtering with state=all
@@ -265,7 +265,7 @@ def import_milestone(source):
 		"due_on": source['due_on']
 	}
 	
-	result_milestone = send_request('target', "milestones", source)
+	result_milestone = send_request('target', "milestones", data)
 	print("Successfully created milestone '%s'" % result_milestone['title'])
 	return result_milestone
 
@@ -275,7 +275,7 @@ def import_label(source):
 		"color": source['color']
 	}
 	
-	result_label = send_request('target', "labels", source)
+	result_label = send_request('target', "labels", data)
 	print("Successfully created label '%s'" % result_label['name'])
 	return result_label
 

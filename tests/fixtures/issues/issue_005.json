@@ -1,0 +1,23 @@
+{
+  "url": "https://api.github.com/repos/IQAndreas/github-issues-import/issues/5",
+  "html_url": "https://github.com/IQAndreas/github-issues-import/issues/5",
+  "number": 5,
+  "title": "Enterprise github request config issue",
+  "user": {
+    "login": "octocat",
+    "id": 7088883,
+    "avatar_url": "https://avatars.githubusercontent.com/u/88883?v=4",
+    "html_url": "https://github.com/octocat",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [],
+  "state": "closed",
+  "assignee": null,
+  "milestone": null,
+  "comments": 0,
+  "created_at": "2014-06-16T05:35:00Z",
+  "updated_at": "2014-06-21T05:35:05Z",
+  "closed_at": "2014-06-25T05:35:57Z",
+  "body": "Comment format body enterprise comment api closed api milestone.\n\nTemplate body closed repository page state target unicode token closed.\n\nDate request error template source retry title state title label config."
+}

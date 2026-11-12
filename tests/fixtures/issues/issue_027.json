@@ -1,0 +1,29 @@
+{
+  "url": "https://api.github.com/repos/IQAndreas/github-issues-import/issues/27",
+  "html_url": "https://github.com/IQAndreas/github-issues-import/issues/27",
+  "number": 27,
+  "title": "Request open target",
+  "user": {
+    "login": "jeevatkm",
+    "id": 2993502,
+    "avatar_url": "https://avatars.githubusercontent.com/u/993502?v=4",
+    "html_url": "https://github.com/jeevatkm",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [],
+  "state": "open",
+  "assignee": null,
+  "milestone": {
+    "number": 4,
+    "title": "v0.4",
+    "state": "open",
+    "description": "Response request title source closed state.",
+    "due_on": null
+  },
+  "comments": 2,
+  "created_at": "2014-04-26T03:09:00Z",
+  "updated_at": "2014-04-03T03:09:05Z",
+  "closed_at": null,
+  "body": "State title page token github label response repository format title.\n\nPage date repository import format response github request open template api token repository target source error enterprise unicode."
+}

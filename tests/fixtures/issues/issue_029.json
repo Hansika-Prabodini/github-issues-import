@@ -1,0 +1,23 @@
+{
+  "url": "https://api.github.com/repos/IQAndreas/github-issues-import/issues/29",
+  "html_url": "https://github.com/IQAndreas/github-issues-import/issues/29",
+  "number": 29,
+  "title": "Response import token open",
+  "user": {
+    "login": "binsharif12-crypto",
+    "id": 1217657,
+    "avatar_url": "https://avatars.githubusercontent.com/u/217657?v=4",
+    "html_url": "https://github.com/binsharif12-crypto",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [],
+  "state": "open",
+  "assignee": null,
+  "milestone": null,
+  "comments": 4,
+  "created_at": "2014-06-04T05:23:00Z",
+  "updated_at": "2014-06-09T05:23:05Z",
+  "closed_at": null,
+  "body": "Comment request repository open config open enterprise error template closed response error api format.\n\nGithub date format comment state format retry issue label unicode.\n\nEnterprise comment response target api target target error api response import."
+}

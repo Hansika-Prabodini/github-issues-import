@@ -1,0 +1,39 @@
+{
+  "url": "https://api.github.com/repos/IQAndreas/github-issues-import/issues/7",
+  "html_url": "https://github.com/IQAndreas/github-issues-import/issues/7",
+  "number": 7,
+  "title": "Error format response",
+  "user": {
+    "login": "jeevatkm",
+    "id": 2993502,
+    "avatar_url": "https://avatars.githubusercontent.com/u/993502?v=4",
+    "html_url": "https://github.com/jeevatkm",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [
+    {
+      "name": "wontfix",
+      "color": "ffffff",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/wontfix"
+    },
+    {
+      "name": "bug",
+      "color": "fc2929",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/bug"
+    },
+    {
+      "name": "enhancement",
+      "color": "84b6eb",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/enhancement"
+    }
+  ],
+  "state": "open",
+  "assignee": null,
+  "milestone": null,
+  "comments": 35,
+  "created_at": "2014-08-22T07:49:00Z",
+  "updated_at": "2014-08-27T07:49:05Z",
+  "closed_at": null,
+  "body": "Token closed title milestone unicode repository page title config comment title."
+}
