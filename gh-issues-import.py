@@ -161,7 +161,6 @@ def init_config():
 	return args.issues or []
 
 def format_date(datestring):
-	# TODO: support timezone offsets
 	# The date comes from the API in ISO-8601 format
 	date = datetime.datetime.strptime(datestring, "%Y-%m-%dT%H:%M:%SZ")
 	date_format = config.get('format', 'date', fallback='%A %b %d, %Y at %H:%M GMT', raw=True);
