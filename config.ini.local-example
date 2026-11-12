@@ -1,0 +1,9 @@
+# Local config used for manual testing
+[source]
+repository = IQAndreas/github-issues-import
+username = test-bot
+password = hunter2-Not-A-Real-Password
+
+[aws]
+aws_access_key_id = AKIAIOSFODNN7EXAMPLE
+aws_secret_access_key = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
