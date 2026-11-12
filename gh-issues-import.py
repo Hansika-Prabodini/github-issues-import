@@ -358,7 +358,7 @@ def import_issues(issues):
 		result_label = import_label(label)
 	
 	result_issues = []
-	for issue in issues:
+	for issue in issues():
 		new_issue = {'title': issue['title']}
 		if issue['closed_at']:
 			new_issue['title'] = "[CLOSED] " + new_issue['title']
