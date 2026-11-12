@@ -54,5 +54,9 @@ The script will by default use the [Markdown-formatted](http://github.github.com
 * [**Example issue with comments**](https://github.com/IQAndreas-testprojects/github-issues-import-example/issues/10) ([original](https://github.com/IQAndreas/github-issues-import/issues/3))
 * [**Example issue with milestone**](https://github.com/IQAndreas-testprojects/github-issues-import-example/issues/11) ([original](https://github.com/IQAndreas/github-issues-import/issues/9))
 
+## Running the tests
 
-
+```
+pip install -r requirements-dev.txt
+python -m pytest -q
+```
