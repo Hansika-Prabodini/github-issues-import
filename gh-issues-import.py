@@ -247,10 +247,18 @@ def get_issues_by_state(which, state):
 		page += 1
 
 def get_comments_on_issue(which, issue):
-	if issue['comments'] != 0:
-		return send_request(which, "issues/%s/comments" % issue['number'])
-	else :
-		return []
+	# GitHub returns at most 30 comments per page by default (issue #35)
+	comments = []
+	if issue['comments'] == 0:
+		return comments
+	page = 1
+	while len(comments) < issue['comments']:
+		batch = send_request(which, "issues/%s/comments?per_page=50&page=%d" % (issue['number'], page))
+		if not batch:
+			break
+		comments.extend(batch)
+		page += 1
+	return comments
 
 def import_milestone(source):
 	data = {
