@@ -1,0 +1,39 @@
+{
+  "url": "https://api.github.com/repos/IQAndreas/github-issues-import/issues/37",
+  "html_url": "https://github.com/IQAndreas/github-issues-import/issues/37",
+  "number": 37,
+  "title": "Source enterprise date import response",
+  "user": {
+    "login": "IQAndreas",
+    "id": 9603388,
+    "avatar_url": "https://avatars.githubusercontent.com/u/603388?v=4",
+    "html_url": "https://github.com/IQAndreas",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [
+    {
+      "name": "bug",
+      "color": "fc2929",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/bug"
+    },
+    {
+      "name": "invalid",
+      "color": "e6e6e6",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/invalid"
+    },
+    {
+      "name": "help wanted",
+      "color": "159818",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/help%20wanted"
+    }
+  ],
+  "state": "open",
+  "assignee": null,
+  "milestone": null,
+  "comments": 0,
+  "created_at": "2014-02-28T13:19:00Z",
+  "updated_at": "2014-02-05T13:19:05Z",
+  "closed_at": null,
+  "body": "Format format request label token state config unicode body issue milestone date page comment.\n\nConfig state unicode date retry title format comment.\n\nLabel state milestone source enterprise error comment open open issue unicode template milestone config request page response."
+}

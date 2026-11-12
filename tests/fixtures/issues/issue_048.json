@@ -1,0 +1,35 @@
+{
+  "url": "https://api.github.com/repos/IQAndreas/github-issues-import/issues/48",
+  "html_url": "https://github.com/IQAndreas/github-issues-import/issues/48",
+  "number": 48,
+  "title": "Page title issue label enterprise",
+  "user": {
+    "login": "binsharif12-crypto",
+    "id": 1217657,
+    "avatar_url": "https://avatars.githubusercontent.com/u/217657?v=4",
+    "html_url": "https://github.com/binsharif12-crypto",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [
+    {
+      "name": "wontfix",
+      "color": "ffffff",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/wontfix"
+    }
+  ],
+  "state": "open",
+  "assignee": null,
+  "milestone": {
+    "number": 1,
+    "title": "v0.1",
+    "state": "open",
+    "description": "Issue request retry github template response.",
+    "due_on": null
+  },
+  "comments": 2,
+  "created_at": "2014-01-05T00:36:00Z",
+  "updated_at": "2014-01-10T00:36:05Z",
+  "closed_at": null,
+  "body": "Label api issue import milestone template source repository response.\n\nTitle target page format comment retry enterprise response repository label error error title."
+}

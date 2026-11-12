@@ -1,0 +1,39 @@
+{
+  "url": "https://api.github.com/repos/IQAndreas/github-issues-import/issues/25",
+  "html_url": "https://github.com/IQAndreas/github-issues-import/issues/25",
+  "number": 25,
+  "title": "Open date label",
+  "user": {
+    "login": "octocat",
+    "id": 7088883,
+    "avatar_url": "https://avatars.githubusercontent.com/u/88883?v=4",
+    "html_url": "https://github.com/octocat",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [
+    {
+      "name": "question",
+      "color": "cc317c",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/question"
+    },
+    {
+      "name": "good first issue",
+      "color": "7057ff",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/good%20first%20issue"
+    },
+    {
+      "name": "invalid",
+      "color": "e6e6e6",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/invalid"
+    }
+  ],
+  "state": "closed",
+  "assignee": null,
+  "milestone": null,
+  "comments": 4,
+  "created_at": "2014-02-20T01:55:00Z",
+  "updated_at": "2014-02-25T01:55:05Z",
+  "closed_at": "2014-02-01T01:55:57Z",
+  "body": "Response unicode milestone unicode date token unicode state api target body format format issue date."
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "id": 38000,
+    "user": {
+      "login": "octocat",
+      "id": 7088883,
+      "avatar_url": "https://avatars.githubusercontent.com/u/88883?v=4",
+      "html_url": "https://github.com/octocat",
+      "type": "User",
+      "site_admin": false
+    },
+    "created_at": "2014-03-03T14:26:00Z",
+    "updated_at": "2014-03-04T14:26:13Z",
+    "body": "Request title page label comment repository github template request enterprise date date."
+  },
+  {
+    "id": 38001,
+    "user": {
+      "login": "IQAndreas",
+      "id": 9603388,
+      "avatar_url": "https://avatars.githubusercontent.com/u/603388?v=4",
+      "html_url": "https://github.com/IQAndreas",
+      "type": "User",
+      "site_admin": false
+    },
+    "created_at": "2014-03-04T14:26:13Z",
+    "updated_at": "2014-03-05T14:26:26Z",
+    "body": "Enterprise response milestone comment date config retry error."
+  },
+  {
+    "id": 38002,
+    "user": {
+      "login": "IQAndreas",
+      "id": 9603388,
+      "avatar_url": "https://avatars.githubusercontent.com/u/603388?v=4",
+      "html_url": "https://github.com/IQAndreas",
+      "type": "User",
+      "site_admin": false
+    },
+    "created_at": "2014-03-05T14:26:26Z",
+    "updated_at": "2014-03-06T14:26:39Z",
+    "body": "Page enterprise repository import error title closed format closed."
+  }
+]

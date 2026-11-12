@@ -1,0 +1,35 @@
+{
+  "url": "https://api.github.com/repos/IQAndreas/github-issues-import/issues/3",
+  "html_url": "https://github.com/IQAndreas/github-issues-import/issues/3",
+  "number": 3,
+  "title": "Error page comment token open",
+  "user": {
+    "login": "defunkt",
+    "id": 3882321,
+    "avatar_url": "https://avatars.githubusercontent.com/u/882321?v=4",
+    "html_url": "https://github.com/defunkt",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [
+    {
+      "name": "bug",
+      "color": "fc2929",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/bug"
+    }
+  ],
+  "state": "open",
+  "assignee": null,
+  "milestone": {
+    "number": 4,
+    "title": "v0.4",
+    "state": "open",
+    "description": "Token source body error source title.",
+    "due_on": null
+  },
+  "comments": 0,
+  "created_at": "2014-04-10T03:21:00Z",
+  "updated_at": "2014-04-15T03:21:05Z",
+  "closed_at": null,
+  "body": "Milestone config format closed closed page format open unicode open error retry."
+}

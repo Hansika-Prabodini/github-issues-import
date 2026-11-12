@@ -1,0 +1,39 @@
+{
+  "url": "https://api.github.com/repos/IQAndreas/github-issues-import/issues/23",
+  "html_url": "https://github.com/IQAndreas/github-issues-import/issues/23",
+  "number": 23,
+  "title": "Unicode body title token response target",
+  "user": {
+    "login": "binsharif12-crypto",
+    "id": 1217657,
+    "avatar_url": "https://avatars.githubusercontent.com/u/217657?v=4",
+    "html_url": "https://github.com/binsharif12-crypto",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [
+    {
+      "name": "enhancement",
+      "color": "84b6eb",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/enhancement"
+    },
+    {
+      "name": "bug",
+      "color": "fc2929",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/bug"
+    },
+    {
+      "name": "question",
+      "color": "cc317c",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/question"
+    }
+  ],
+  "state": "open",
+  "assignee": null,
+  "milestone": null,
+  "comments": 2,
+  "created_at": "2014-12-14T23:41:00Z",
+  "updated_at": "2014-12-19T23:41:05Z",
+  "closed_at": null,
+  "body": "Format retry error milestone api retry state closed label response config title label.\n\nTitle config milestone label issue request error target unicode config repository enterprise."
+}

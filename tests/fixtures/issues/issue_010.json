@@ -1,0 +1,39 @@
+{
+  "url": "https://api.github.com/repos/IQAndreas/github-issues-import/issues/10",
+  "html_url": "https://github.com/IQAndreas/github-issues-import/issues/10",
+  "number": 10,
+  "title": "Source response import unicode enterprise body label",
+  "user": {
+    "login": "pjhyett",
+    "id": 6456513,
+    "avatar_url": "https://avatars.githubusercontent.com/u/456513?v=4",
+    "html_url": "https://github.com/pjhyett",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [
+    {
+      "name": "good first issue",
+      "color": "7057ff",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/good%20first%20issue"
+    },
+    {
+      "name": "Example Issue",
+      "color": "5319e7",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/Example%20Issue"
+    },
+    {
+      "name": "enhancement",
+      "color": "84b6eb",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/enhancement"
+    }
+  ],
+  "state": "closed",
+  "assignee": null,
+  "milestone": null,
+  "comments": 4,
+  "created_at": "2014-11-03T10:10:00Z",
+  "updated_at": "2014-11-08T10:10:05Z",
+  "closed_at": "2014-11-12T10:10:57Z",
+  "body": "Enterprise title date milestone unicode repository format state source page target github closed api body title unicode enterprise.\n\nPage response config enterprise comment page title config api title open target template error response import body."
+}

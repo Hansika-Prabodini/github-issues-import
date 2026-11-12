@@ -1,0 +1,39 @@
+{
+  "url": "https://api.github.com/repos/IQAndreas/github-issues-import/issues/33",
+  "html_url": "https://github.com/IQAndreas/github-issues-import/issues/33",
+  "number": 33,
+  "title": "Closed repository response closed",
+  "user": {
+    "login": "pjhyett",
+    "id": 6456513,
+    "avatar_url": "https://avatars.githubusercontent.com/u/456513?v=4",
+    "html_url": "https://github.com/pjhyett",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [
+    {
+      "name": "help wanted",
+      "color": "159818",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/help%20wanted"
+    }
+  ],
+  "state": "open",
+  "assignee": null,
+  "milestone": {
+    "number": 2,
+    "title": "v0.2",
+    "state": "open",
+    "description": "Title config github error source repository.",
+    "due_on": null
+  },
+  "comments": 1,
+  "created_at": "2014-10-16T09:51:00Z",
+  "updated_at": "2014-10-21T09:51:05Z",
+  "closed_at": null,
+  "body": "Template unicode error import format target token title open unicode error import date token token page api date.",
+  "pull_request": {
+    "url": "https://api.github.com/repos/IQAndreas/github-pulls-import/pulls/33",
+    "html_url": "https://github.com/IQAndreas/github-pull-import/pull/33"
+  }
+}

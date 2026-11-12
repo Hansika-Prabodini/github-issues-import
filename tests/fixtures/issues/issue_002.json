@@ -1,0 +1,39 @@
+{
+  "url": "https://api.github.com/repos/IQAndreas/github-issues-import/issues/2",
+  "html_url": "https://github.com/IQAndreas/github-issues-import/issues/2",
+  "number": 2,
+  "title": "Closed request enterprise",
+  "user": {
+    "login": "defunkt",
+    "id": 3882321,
+    "avatar_url": "https://avatars.githubusercontent.com/u/882321?v=4",
+    "html_url": "https://github.com/defunkt",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [
+    {
+      "name": "help wanted",
+      "color": "159818",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/help%20wanted"
+    },
+    {
+      "name": "enhancement",
+      "color": "84b6eb",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/enhancement"
+    },
+    {
+      "name": "duplicate",
+      "color": "cccccc",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/duplicate"
+    }
+  ],
+  "state": "open",
+  "assignee": null,
+  "milestone": null,
+  "comments": 0,
+  "created_at": "2014-03-07T02:14:00Z",
+  "updated_at": "2014-03-12T02:14:05Z",
+  "closed_at": null,
+  "body": "Date comment issue template config api request comment config label error.\n\nTitle source enterprise retry repository retry retry token template page date template.\n\nComment target source repository closed format config repository title error page source date closed config template response enterprise."
+}

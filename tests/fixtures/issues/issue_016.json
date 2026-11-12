@@ -1,0 +1,39 @@
+{
+  "url": "https://api.github.com/repos/IQAndreas/github-issues-import/issues/16",
+  "html_url": "https://github.com/IQAndreas/github-issues-import/issues/16",
+  "number": 16,
+  "title": "State target unicode label github date",
+  "user": {
+    "login": "jeevatkm",
+    "id": 2993502,
+    "avatar_url": "https://avatars.githubusercontent.com/u/993502?v=4",
+    "html_url": "https://github.com/jeevatkm",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [
+    {
+      "name": "documentation",
+      "color": "0075ca",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/documentation"
+    },
+    {
+      "name": "help wanted",
+      "color": "159818",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/help%20wanted"
+    },
+    {
+      "name": "In progress",
+      "color": "fbca04",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/In%20progress"
+    }
+  ],
+  "state": "open",
+  "assignee": null,
+  "milestone": null,
+  "comments": 2,
+  "created_at": "2014-05-21T16:52:00Z",
+  "updated_at": "2014-05-26T16:52:05Z",
+  "closed_at": null,
+  "body": "Api closed format token unicode title config unicode response enterprise title error unicode format label response unicode response.\n\nPage retry milestone template body comment comment enterprise comment comment unicode label format format retry github milestone closed.\n\nOpen closed closed response template label unicode retry."
+}

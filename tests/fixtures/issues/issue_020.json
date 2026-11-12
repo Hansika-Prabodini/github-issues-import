@@ -1,0 +1,39 @@
+{
+  "url": "https://api.github.com/repos/IQAndreas/github-issues-import/issues/20",
+  "html_url": "https://github.com/IQAndreas/github-issues-import/issues/20",
+  "number": 20,
+  "title": "Issue title github open source token response target",
+  "user": {
+    "login": "wycats",
+    "id": 7122727,
+    "avatar_url": "https://avatars.githubusercontent.com/u/122727?v=4",
+    "html_url": "https://github.com/wycats",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [
+    {
+      "name": "wontfix",
+      "color": "ffffff",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/wontfix"
+    },
+    {
+      "name": "documentation",
+      "color": "0075ca",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/documentation"
+    },
+    {
+      "name": "help wanted",
+      "color": "159818",
+      "url": "https://api.github.com/repos/IQAndreas/github-issues-import/labels/help%20wanted"
+    }
+  ],
+  "state": "closed",
+  "assignee": null,
+  "milestone": null,
+  "comments": 0,
+  "created_at": "2014-09-05T20:20:00Z",
+  "updated_at": "2014-09-10T20:20:05Z",
+  "closed_at": "2014-09-14T20:20:57Z",
+  "body": "Issue title label github enterprise response date comment state source.\n\nIssue config date title title state state target repository retry.\n\nRequest error unicode api response template target issue github source source response comment."
+}
