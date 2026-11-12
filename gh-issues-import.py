@@ -247,10 +247,15 @@ def get_issues_by_state(which, state):
 		page += 1
 
 def get_comments_on_issue(which, issue):
-	if issue['comments'] != 0:
-		return send_request(which, "issues/%s/comments" % issue['number'])
-	else :
-		return []
+	if not issue['comments']:
+		return
+	page = 1
+	while True:
+		comments = send_request(which, "issues/%s/comments?per_page=100&page=%d" % (issue['number'], page))
+		if not comments:
+			break
+		yield from comments
+		page += 1
 
 def import_milestone(source):
 	data = {
